@@ -1,17 +1,41 @@
 {
   "name": "protobuf-config-loader",
-  "description": "protobuf config loader implementation",
+  "description": "Protobuf-style schemas for typed application config: parse schema definitions, merge JSON + env sources, apply defaults, and validate with precise error paths",
   "version": "1.0.0",
   "type": "module",
-  "scripts": {
-    "test": "bun test",
-    "build": "tsc"
+  "license": "MIT",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
   },
-  "dependencies": {
-    "commander": "^11.1.0"
+  "bin": { "pcl": "bin/pcl.js" },
+  "files": ["dist", "bin", "README.md", "LICENSE"],
+  "scripts": {
+    "build": "tsc",
+    "prepare": "tsc",
+    "test": "bun test"
+  },
+  "keywords": [
+    "config",
+    "configuration",
+    "protobuf",
+    "schema",
+    "validation",
+    "loader",
+    "env",
+    "defaults"
+  ],
+  "engines": { "node": ">=18" },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Retsumdk/protobuf-config-loader.git"
   },
   "devDependencies": {
-    "bun-types": "^1.0.0",
-    "typescript": "^5.3.0"
+    "bun-types": "^1.1.0",
+    "typescript": "^5.5.0"
   }
 }

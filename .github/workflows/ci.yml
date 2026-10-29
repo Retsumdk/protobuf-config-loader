@@ -1,0 +1,32 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+      - run: bun install
+      - run: bun run build
+      - run: bun test
+
+  node-install-probe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install this repo as a git dependency from a neutral project
+        run: |
+          mkdir -p /tmp/probe && cd /tmp/probe
+          echo '{"name":"probe","private":true}' > package.json
+          npm install "$GITHUB_WORKSPACE"
+          node -e "import('protobuf-config-loader').then(m => { const s = m.loadSchema('syntax = \"pcl/1\"; message M { string a = 1 [default = \"x\"]; }'); const r = m.loadConfig({ schema: s, sources: [{ name: 't', data: {} }] }); if (!r.ok) throw new Error('probe failed'); console.log('NODE_IMPORT_OK', JSON.stringify(r.value)); })"

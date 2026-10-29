@@ -12,7 +12,9 @@
       "default": "./dist/index.js"
     }
   },
-  "bin": { "pcl": "bin/pcl.js" },
+  "bin": {
+    "pcl": "bin/pcl.js"
+  },
   "files": ["dist", "bin", "README.md", "LICENSE"],
   "scripts": {
     "build": "tsc",
@@ -29,13 +31,15 @@
     "env",
     "defaults"
   ],
-  "engines": { "node": ">=18" },
+  "engines": {
+    "node": ">=18"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Retsumdk/protobuf-config-loader.git"
   },
   "devDependencies": {
-    "bun-types": "^1.1.0",
+    "@types/node": "^26.6.6",
     "typescript": "^5.5.0"
   }
 }

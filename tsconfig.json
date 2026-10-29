@@ -4,12 +4,12 @@
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
     "lib": ["ES2022"],
-    "types": ["bun-types"],
     "strict": true,
     "noUncheckedIndexedAccess": true,
     "exactOptionalPropertyTypes": true,
     "declaration": true,
     "sourceMap": true,
+    "rootDir": "./src",
     "outDir": "./dist"
   },
   "include": ["src/**/*"],
